@@ -5,12 +5,14 @@ import TreatmentList from './components/TreatmentList.jsx';
 import TreatmentForm from './components/TreatmentForm.jsx';
 import { treatmentRecords } from './data/treatments.js';
 
-// Unique treatment types derived from the data, used to build the filter options.
+// Builds the available filter options from the records.
 const treatmentTypes = [...new Set(treatmentRecords.map((record) => record.type))].sort();
 
+// Coordinates filtering and the main page layout.
 function App() {
   const [selectedType, setSelectedType] = useState('All');
 
+  // Keeps only records matching the selected type.
   const filteredTreatments =
     selectedType === 'All'
       ? treatmentRecords

@@ -1,6 +1,6 @@
 import TreatmentCard from './TreatmentCard.jsx';
 
-// Renders the (already filtered) treatment records using .map().
+// Renders the filtered treatment records.
 function TreatmentList({ treatments }) {
   return (
     <section className="panel" aria-labelledby="records-heading">

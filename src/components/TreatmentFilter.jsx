@@ -1,5 +1,4 @@
-// Filter control: a dropdown listing every treatment type plus "All".
-// The selected value is owned by App (lifted state) and passed in via props.
+// Lets users filter records by treatment type.
 function TreatmentFilter({ treatmentTypes, selectedType, onTypeChange, resultCount }) {
   return (
     <section className="panel" aria-labelledby="filter-heading">

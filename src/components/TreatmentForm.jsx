@@ -8,19 +8,19 @@ const emptyForm = {
   startDate: '',
 };
 
-// Interactive entry form. Entered details are shown below the form when the
-// button is clicked. They are NOT added to the predefined treatment records.
+// Collects and displays a treatment entry without saving it.
 function TreatmentForm() {
   const [formData, setFormData] = useState(emptyForm);
   const [submittedTreatment, setSubmittedTreatment] = useState(null);
   const [error, setError] = useState('');
 
-  // One change handler for all four inputs, keyed by the input's name attribute.
+  // Updates the field that was edited.
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
+  // Validates the form and displays the entered treatment.
   const handleDisplay = (event) => {
     event.preventDefault();
 
@@ -34,6 +34,7 @@ function TreatmentForm() {
     setSubmittedTreatment(formData);
   };
 
+  // Resets the form, result, and validation message.
   const handleClear = () => {
     setFormData(emptyForm);
     setSubmittedTreatment(null);

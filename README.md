@@ -13,19 +13,27 @@ npm run dev
 
 Open the local URL shown in the terminal (normally http://localhost:5173).
 
+To create a production build or preview it locally:
+
+```bash
+npm run build
+npm run preview
+```
+
 ## Structure
 
 ```
 src/
-  App.jsx                    State (selected filter) and page layout
-  data/treatments.js         Predefined treatment records (JSON-style array)
-  utils/formatDate.js        ISO date -> DD/MM/YYYY
+  App.jsx                    Filter state and page layout
+  main.jsx                   React application entry point
+  data/treatments.js         Ten predefined treatment records
+  utils/formatDate.js        ISO date to DD/MM/YYYY formatter
   components/
-    Header.jsx
+    Header.jsx               Application header
     TreatmentFilter.jsx      Filter by treatment type
-    TreatmentList.jsx        Renders records with .map()
-    TreatmentCard.jsx        One treatment record
-    TreatmentForm.jsx        Entry form; displays input on button click
+    TreatmentList.jsx        Filtered record list
+    TreatmentCard.jsx        Single treatment record
+    TreatmentForm.jsx        Entry form and displayed result
   index.css                  Mobile-first styles with tablet/desktop breakpoints
 ```
 

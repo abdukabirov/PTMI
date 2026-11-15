@@ -1,6 +1,6 @@
 import { formatDate } from '../utils/formatDate.js';
 
-// Displays a single treatment record. Receives the record fields as props.
+// Displays one treatment record.
 function TreatmentCard({ id, type, name, startDate }) {
   return (
     <li className="card">

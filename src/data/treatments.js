@@ -1,5 +1,4 @@
-// Predefined treatment records, stored locally as structured JSON-style data.
-// Dates use the ISO format (YYYY-MM-DD) and are displayed in UK format by the UI.
+// Stores the local treatment records in ISO date format.
 export const treatmentRecords = [
   {
     id: 'T001',

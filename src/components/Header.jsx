@@ -1,3 +1,4 @@
+// Displays the application name and subtitle.
 function Header() {
   return (
     <header className="app-header">
