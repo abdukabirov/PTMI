@@ -36,28 +36,4 @@ export const treatmentRecords = [
     name: 'Cholesterol Management Plan',
     startDate: '2026-11-20',
   },
-  {
-    id: 'T007',
-    type: 'Dermatology',
-    name: 'Mole Assessment and Follow-up',
-    startDate: '2026-11-23',
-  },
-  {
-    id: 'T008',
-    type: 'Physiotherapy',
-    name: 'Shoulder Strengthening Exercises',
-    startDate: '2026-11-27', 
-  },
-  {
-    id: 'T009',
-    type: 'Mental Health',
-    name: 'Mindfulness-Based Stress Reduction (MBSR)',
-    startDate: '2026-11-30',
-  },
-  {
-    id: 'T010',
-    type: 'Cardiology',
-    name: 'Heart Failure Management Programme',
-    startDate: '2026-12-04',
-  },
 ];

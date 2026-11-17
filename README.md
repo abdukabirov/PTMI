@@ -26,7 +26,7 @@ npm run preview
 src/
   App.jsx                    Filter state and page layout
   main.jsx                   React application entry point
-  data/treatments.js         Ten predefined treatment records
+  data/treatments.js         Six predefined treatment records
   utils/formatDate.js        ISO date to DD/MM/YYYY formatter
   components/
     Header.jsx               Application header
