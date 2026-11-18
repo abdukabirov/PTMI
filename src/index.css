@@ -1,17 +1,17 @@
 /* ---------- Design tokens ---------- */
 :root {
-  --colour-primary: #0b6e8a;
-  --colour-primary-dark: #08566d;
-  --colour-primary-light: #e3f3f8;
-  --colour-bg: #f3f6f8;
+  --colour-primary: #333333;
+  --colour-primary-dark: #222222;
+  --colour-primary-light: #eeeeee;
+  --colour-bg: #f4f4f4;
   --colour-surface: #ffffff;
-  --colour-text: #1d2b34;
-  --colour-text-muted: #55656f;
-  --colour-border: #d4dde3;
+  --colour-text: #222222;
+  --colour-text-muted: #555555;
+  --colour-border: #cccccc;
   --colour-error: #b3261e;
   --colour-error-bg: #fdecea;
   --radius: 10px;
-  --shadow: 0 1px 3px rgba(16, 38, 51, 0.1);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   --gap: 1rem;
 }
 
@@ -24,7 +24,13 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--colour-text);
@@ -40,8 +46,9 @@ p {
 
 /* ---------- Header ---------- */
 .app-header {
-  background: var(--colour-primary);
-  color: #fff;
+  background: #fff;
+  color: var(--colour-text);
+  border-bottom: 1px solid var(--colour-border);
   padding: 0.85rem 1rem;
 }
 
@@ -58,9 +65,10 @@ p {
   place-items: center;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 50%;
+  border-radius: 6px;
   background: #fff;
-  color: var(--colour-primary);
+  color: var(--colour-text);
+  border: 1.5px solid var(--colour-text);
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1;
@@ -73,13 +81,13 @@ p {
 
 .app-header__subtitle {
   font-size: 0.8rem;
-  opacity: 0.9;
+  color: var(--colour-text-muted);
 }
 
 /* ---------- Layout ---------- */
 .layout {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--gap);
   max-width: 1100px;
   margin: 0 auto;
@@ -88,12 +96,14 @@ p {
 
 .layout__records {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--gap);
   align-content: start;
 }
 
 /* ---------- Panels ---------- */
 .panel {
+  min-width: 0;
   background: var(--colour-surface);
   border: 1px solid var(--colour-border);
   border-radius: var(--radius);
@@ -133,7 +143,7 @@ p {
 
 .field__control:focus-visible,
 .btn:focus-visible {
-  outline: 3px solid #7cc4d8;
+  outline: 3px solid #000000;
   outline-offset: 1px;
   border-color: var(--colour-primary);
 }
@@ -197,21 +207,26 @@ p {
 }
 
 /* ---------- Treatment cards ---------- */
+/* Mobile: 3 cards per "page" in a column, swipe right for the next page. */
 .card-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
   gap: 0.75rem;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0.5rem;
   list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
 }
 
 .card {
   padding: 0.85rem;
   border: 1px solid var(--colour-border);
-  border-left: 4px solid var(--colour-primary);
   border-radius: 8px;
   background: #fff;
+  scroll-snap-align: start;
 }
 
 .card__header {
@@ -252,6 +267,12 @@ p {
   font-weight: 600;
 }
 
+.swipe-hint {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--colour-text-muted);
+}
+
 .empty {
   padding: 1rem;
   text-align: center;
@@ -280,7 +301,7 @@ p {
   flex-wrap: wrap;
   gap: 0.25rem 0.75rem;
   padding: 0.35rem 0;
-  border-bottom: 1px solid rgba(11, 110, 138, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .result__row dt {
@@ -299,18 +320,38 @@ p {
   color: var(--colour-text-muted);
 }
 
-/* ---------- Tablet (>= 600px) ---------- */
-@media (min-width: 600px) {
+/* ---------- Computer (>= 960px) ---------- */
+/* Below 960px the phone layout above is used. */
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: start;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .layout__form {
+    position: sticky;
+    top: 1rem;
+  }
+
+  .panel {
+    padding: 1.25rem;
+  }
+
+  /* Records: normal two-column grid, no swiping */
   .card-grid {
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
     grid-template-columns: repeat(2, 1fr);
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
   }
 
-  .form-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .field--wide {
-    grid-column: 1 / -1;
+  .swipe-hint {
+    display: none;
   }
 
   .button-row {
@@ -323,28 +364,5 @@ p {
 
   .app-header__subtitle {
     font-size: 0.9rem;
-  }
-}
-
-/* ---------- Desktop (>= 960px) ---------- */
-@media (min-width: 960px) {
-  .layout {
-    grid-template-columns: 1.4fr 1fr;
-    align-items: start;
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-
-  .layout__form {
-    position: sticky;
-    top: 1rem;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .panel {
-    padding: 1.25rem;
   }
 }

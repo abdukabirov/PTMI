@@ -1,25 +1,30 @@
-import TreatmentCard from './TreatmentCard.jsx';
+import TreatmentCard from "./TreatmentCard.jsx";
 
 // Renders the filtered treatment records.
 function TreatmentList({ treatments }) {
   return (
     <section className="panel" aria-labelledby="records-heading">
-      <h2 id="records-heading" className="panel__title">Treatment Records</h2>
+      <h2 id="records-heading" className="panel__title">
+        Treatment Records
+      </h2>
 
       {treatments.length === 0 ? (
         <p className="empty">No treatments found for this type.</p>
       ) : (
-        <ul className="card-grid">
-          {treatments.map((treatment) => (
-            <TreatmentCard
-              key={treatment.id}
-              id={treatment.id}
-              type={treatment.type}
-              name={treatment.name}
-              startDate={treatment.startDate}
-            />
-          ))}
-        </ul>
+        <>
+          <ul className="card-grid">
+            {treatments.map((treatment) => (
+              <TreatmentCard
+                key={treatment.id}
+                id={treatment.id}
+                type={treatment.type}
+                name={treatment.name}
+                startDate={treatment.startDate}
+              />
+            ))}
+          </ul>
+          <p className="swipe-hint">Swipe left to see more →</p>
+        </>
       )}
     </section>
   );
